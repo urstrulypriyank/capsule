@@ -11,6 +11,21 @@ const Button = ({ item, buttonType }) => {
     useContext(ChoiceContext);
 
   useEffect(() => {
+    if (buttonType != "form") return;
+    const list = saltFormsJson[item];
+    Object.entries(list).map(([key, innerOne]) => {
+      Object.entries(innerOne).map(([key, innerTwo]) => {
+        Object.entries(innerTwo).map(([key, value]) => {
+          if (value != null) {
+            setIsPriceAvailable(true);
+            return;
+          }
+        });
+      });
+    });
+  });
+
+  useEffect(() => {
     if (!selectedData.form || !selectedData.strength || !selectedData.packing)
       return;
 
