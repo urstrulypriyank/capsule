@@ -2,7 +2,7 @@ import { getData } from "@/utils/fetchSalts";
 import SaltListItem from "./SaltListItem";
 
 export default async function SaltListContainer({ searchText }) {
-  if (searchText.length == 0) return;
+  if (!searchText || searchText.length == 0) return;
   const data = await getData(searchText);
   return (
     <div className="md:w-[80%] w-[95vw]  mx-auto mt-10   ">
