@@ -9,6 +9,7 @@ const SaltListItem = ({ saltName, saltForms, strength, saltFormsJson }) => {
     strength: null,
     packing: null,
   });
+  
   const [possibleStrength, setPossibleStrength] = useState([]);
   const [possiblePacking, setPossiblePacking] = useState([]);
   const [minPrice, setMinPrice] = useState(null);

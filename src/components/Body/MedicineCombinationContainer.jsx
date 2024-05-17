@@ -11,7 +11,6 @@ const MedicineCombinationContainer = ({
   possibleStrength,
   selectedData,
   setSelectedData,
-  minPrice,
   saltFormsJson = { saltFormsJson },
 }) => {
   const [showAllForms, setShowAllForms] = useState(false);

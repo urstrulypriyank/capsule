@@ -1,12 +1,9 @@
-// Button.jsx
 "use client";
 import React, { useContext, useEffect, useState } from "react";
 import { ChoiceContext } from "../Body/MedicineCombinationContainer";
 
 const Button = ({ item, buttonType }) => {
   const [isPriceAvailabele, setIsPriceAvailable] = useState(false);
-  const [buttonText, setButtonText] = useState(item);
-  const [priceList, setPriceList] = useState(null);
   const { selectedData, setSelectedData, saltFormsJson } =
     useContext(ChoiceContext);
 
@@ -33,20 +30,15 @@ const Button = ({ item, buttonType }) => {
     if (buttonType === "strength") {
       if (
         saltFormsJson[selectedData.form] &&
-        saltFormsJson[selectedData.form][buttonText]
+        saltFormsJson[selectedData.form][item]
       ) {
         priceList =
-          saltFormsJson[selectedData.form][buttonText][selectedData.packing];
+          saltFormsJson[selectedData.form][item][selectedData.packing];
       }
     } else if (buttonType === "form") {
-      if (
-        saltFormsJson[buttonText] &&
-        saltFormsJson[buttonText][selectedData.strength]
-      ) {
+      if (saltFormsJson[item] && saltFormsJson[item][selectedData.strength]) {
         priceList =
-          saltFormsJson[buttonText][selectedData.strength][
-            selectedData.packing
-          ];
+          saltFormsJson[item][selectedData.strength][selectedData.packing];
       }
     } else if (buttonType === "packing") {
       if (
@@ -66,7 +58,7 @@ const Button = ({ item, buttonType }) => {
         }
       });
     }
-  }, [selectedData, item, saltFormsJson, buttonType, buttonText]);
+  }, [selectedData, item, saltFormsJson, buttonType, item]);
 
   return (
     <li
