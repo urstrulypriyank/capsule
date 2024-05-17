@@ -6,7 +6,7 @@ import { useState } from "react";
 export const ChoiceContext = createContext();
 
 const MedicineCombinationContainer = ({
-  saltForms,
+  form,
   possiblePacking,
   possibleStrength,
   selectedData,
@@ -17,6 +17,7 @@ const MedicineCombinationContainer = ({
   const [showAllForms, setShowAllForms] = useState(false);
   const [showAllStrength, setShowAllStrength] = useState(false);
   const [showAllPacking, setShowAllPacking] = useState(false);
+  const size = Object.keys(form).length;
   return (
     <ChoiceContext.Provider
       value={{ saltFormsJson, selectedData, setSelectedData }}
@@ -27,21 +28,14 @@ const MedicineCombinationContainer = ({
           <div>Form:</div>
 
           <ul className="flex flex-wrap w-full items-center text-center [&>*]:m-1">
-            {saltForms?.map((item, index) => {
+            {Object.entries(form).map(([item], index) => {
               if (!showAllForms && index > 1) return null;
               return (
-                <Button
-                  key={item + index}
-                  item={item}
-                  minPrice={minPrice}
-                  selectedData={selectedData}
-                  setSelectedData={setSelectedData}
-                  buttonType={"form"}
-                />
+                <Button key={item + index} item={item} buttonType={"form"} />
               );
             })}
 
-            {!showAllForms && saltForms.length > 1 && (
+            {!showAllForms && size > 1 && (
               <button
                 className="text-blue-500 underline"
                 onClick={() => setShowAllForms(!showAllForms)}

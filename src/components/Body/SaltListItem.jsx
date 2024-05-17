@@ -13,6 +13,17 @@ const SaltListItem = ({ saltName, saltForms, strength, saltFormsJson }) => {
   const [possiblePacking, setPossiblePacking] = useState([]);
   const [minPrice, setMinPrice] = useState(null);
 
+  const [forms, setFroms] = useState({});
+
+  useEffect(() => {
+    // SET FROMS AS OBJECT
+    const TEMP_OBJ = {};
+    saltForms.map((item) => {
+      TEMP_OBJ[item] = false;
+    });
+    setFroms(TEMP_OBJ);
+  }, [saltForms]);
+
   useEffect(() => {
     if (!selectedData.form || !saltFormsJson) return;
 
@@ -81,7 +92,7 @@ const SaltListItem = ({ saltName, saltForms, strength, saltFormsJson }) => {
   return (
     <div className="my-6 min min-h-44 md:w-[80%] flex flex-col md:flex-row mx-auto border border-1 bg-white backdrop-blur-lg shadow-md rounded-xl space-y-2 bg-gradient-to-r from-white via-white to-cyan-50">
       <MedicineCombinationContainer
-        saltForms={saltForms}
+        form={forms}
         strength={strength}
         setSelectedData={setSelectedData}
         selectedData={selectedData}
