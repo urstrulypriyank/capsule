@@ -30,7 +30,7 @@ const Button = ({ item, buttonType }) => {
     if (priceList) {
       setPriceList(priceList);
     }
-  }, [selectedData, item, saltFormsJson, buttonType]);
+  }, [selectedData, item, saltFormsJson, buttonType, buttonText]);
 
   useEffect(() => {
     if (priceList) {
